@@ -76,8 +76,8 @@ public class MleModelActor extends MleActor
     public void init() throws MleRuntimeException
     {
         // Update the Role by pushing the property values.
-        texture.push(this);
-        model.push(this);
+        if (texture != null) texture.push(this);
+        if (model != null) model.push(this);
         update();
 
         // Register with the scheduler.
@@ -107,9 +107,9 @@ public class MleModelActor extends MleActor
     {
         try {
             // Update transform-related properties only.
-            scale.push(this);
-            orientation.push(this);
-            position.push(this);
+            if (scale != null) scale.push(this);
+            if (orientation != null) orientation.push(this);
+            if (position != null) position.push(this);
         } catch (MleRuntimeException ex)
         {
             // ToDo: do we just ignore the fault?
