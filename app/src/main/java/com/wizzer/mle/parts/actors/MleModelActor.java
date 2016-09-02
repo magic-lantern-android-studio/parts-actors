@@ -85,7 +85,7 @@ public class MleModelActor extends MleActor
         MlePhase actorPhase = MleTitle.g_theActorPhase;
         if (actorPhase == null)
             throw new MleRuntimeException("MleModelActor: Actor phase does not exist.");
-        m_behaveTask = new MleTask(new DoBehave(this));
+        m_behaveTask = new MleTask(new DoBehave(this), "Do behave");
         scheduler.addTask(actorPhase, m_behaveTask);
     }
 
@@ -121,6 +121,9 @@ public class MleModelActor extends MleActor
 
     static void behave(MleModelActor actor)
     {
+        // Orientation must be defined in order to spin.
+        if ((actor == null) || (actor.orientation == null)) return;
+
         // Define spin parameters.
         if (m_delta == null)
             m_delta = new MlRotation(new MlVector3(
