@@ -291,6 +291,8 @@ public class MleModelActor extends MleActor
 
                     // Notify property change listeners.
                     notifyPropertyChange("orientation", null, null);
+
+                    return;
                 } else if (name.equals("scale"))
                 {
                     // Read the data in from the input stream.
@@ -307,6 +309,8 @@ public class MleModelActor extends MleActor
 
                     // Notify property change listeners.
                     notifyPropertyChange("scale", null, null);
+
+                    return;
                 }
             } catch (IOException ex)
             {
