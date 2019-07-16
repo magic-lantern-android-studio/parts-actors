@@ -44,3 +44,28 @@ task exportJar(type: Copy){
 }
 
 exportJar.dependsOn(deleteOldJar, build)
+
+// Task to generate jar containing sources
+task generateSourcesJar (type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+// Task to delete the old jar
+task deleteSourcesJar(type: Delete){
+    delete 'libs/actors-sources.jar'
+}
+
+task exportSourcesJar(type: Copy){
+    from('build/libs/')
+    into('release/')
+    include('app-sources.jar')
+    // Rename the jar.
+    rename('app-sources.jar', 'actors-sources.jar')
+}
+
+exportSourcesJar.dependsOn(deleteSourcesJar, generateSourcesJar)
+
+artifacts {
+    archives generateSourcesJar
+}
