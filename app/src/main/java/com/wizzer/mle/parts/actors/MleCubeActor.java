@@ -138,7 +138,7 @@ public class MleCubeActor extends MleActor
 
         //actor.orientation.m_rotation *= m_delta;
         MlRotation rotation = actor.orientation.getProperty();
-        rotation.mul(m_delta);
+        //rotation.mul(m_delta);
         actor.orientation.setProperty(rotation);
 
         // Update associated Role.
